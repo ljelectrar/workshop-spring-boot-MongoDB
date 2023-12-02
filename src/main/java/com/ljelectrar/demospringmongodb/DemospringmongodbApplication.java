@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemospringmongodbApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemospringmongodbApplication.class, args); 
+		SpringApplication.run(DemospringmongodbApplication.class, args);
 	}
 
 }
