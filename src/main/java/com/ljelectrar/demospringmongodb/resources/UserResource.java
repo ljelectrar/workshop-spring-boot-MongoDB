@@ -1,6 +1,8 @@
 package com.ljelectrar.demospringmongodb.resources;
 
 import com.ljelectrar.demospringmongodb.domain.User;
+import com.ljelectrar.demospringmongodb.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,12 +16,12 @@ import java.util.List;
 @RequestMapping(value="/users")
 public class UserResource {
 
+    @Autowired // Injection dependency using the framework
+    private UserService service;
+
     @RequestMapping(method = RequestMethod.GET) // or @getMapping
     public ResponseEntity<List<User>> findAll() {
-         User maria = new User("1", "Maria Silva", "maria@email.com");
-         User leandro = new User("1", "Leandro Junior", "leandro@email.com");
-         List<User> list = new ArrayList<>();
-         list.addAll(Arrays.asList(maria, leandro));
+         List<User> list = service.findAll();
          return ResponseEntity.ok().body(list);
     }
 }
