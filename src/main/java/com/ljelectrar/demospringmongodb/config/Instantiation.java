@@ -2,6 +2,7 @@ package com.ljelectrar.demospringmongodb.config;
 
 import com.ljelectrar.demospringmongodb.domain.Post;
 import com.ljelectrar.demospringmongodb.domain.User;
+import com.ljelectrar.demospringmongodb.dto.AuthorDTO;
 import com.ljelectrar.demospringmongodb.repository.PostRepository;
 import com.ljelectrar.demospringmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +35,12 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-
-        Post post1 = new Post(null, sdf.parse("26/04/2015"),"Partiu viagem", "Vou viajar para Sampa!", maria);
-        Post post2 = new Post(null, sdf.parse("31/04/2015"),"Partiu volta", "Vou voltar para o Rio!", maria);
-
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
         //userRepository.save(Arrays.asList(maria, alex, bob));
+
+
+        Post post1 = new Post(null, sdf.parse("26/04/2015"),"Partiu viagem", "Vou viajar para Sampa!", new AuthorDTO(maria));
+        Post post2 = new Post(null, sdf.parse("31/04/2015"),"Partiu volta", "Vou voltar para o Rio!", new AuthorDTO(maria));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
