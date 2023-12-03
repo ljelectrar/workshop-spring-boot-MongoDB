@@ -3,6 +3,7 @@ package com.ljelectrar.demospringmongodb.config;
 import com.ljelectrar.demospringmongodb.domain.Post;
 import com.ljelectrar.demospringmongodb.domain.User;
 import com.ljelectrar.demospringmongodb.dto.AuthorDTO;
+import com.ljelectrar.demospringmongodb.dto.CommentDTO;
 import com.ljelectrar.demospringmongodb.repository.PostRepository;
 import com.ljelectrar.demospringmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,13 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("26/04/2015"),"Partiu viagem", "Vou viajar para Sampa!", new AuthorDTO(maria));
         Post post2 = new Post(null, sdf.parse("31/04/2015"),"Partiu volta", "Vou voltar para o Rio!", new AuthorDTO(maria));
+
+        CommentDTO c1 = new CommentDTO("Boa Viagem!", sdf.parse("03/08/1995"), new AuthorDTO(alex));
+        CommentDTO c2 = new CommentDTO("Boa Viagem!", sdf.parse("03/08/1996"), new AuthorDTO(bob));
+        CommentDTO c3 = new CommentDTO("Boa Viagem!", sdf.parse("30/11/1997"), new AuthorDTO(alex));
+
+        post1.getComments().addAll(Arrays.asList(c1,c2));
+        post2.getComments().addAll(Arrays.asList(c3));
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
